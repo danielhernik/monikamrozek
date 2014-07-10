@@ -1,0 +1,352 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<!--<link type="text/css" rel="stylesheet" href="css/style-min.css">-->
+<link type="text/css" rel="stylesheet" href="css/stylesheet.css">
+<link type="text/css" rel="stylesheet" href="css/gallery.css">
+<link type="text/css" rel="stylesheet" href="css/menu.css">
+<link type="text/css" rel="stylesheet" href="ext/lightbox/css/lightbox-min.css" />
+<link href='https://fonts.googleapis.com/css?family=Rosario:400italic,400|Amatic+SC|Leckerli+One' rel='stylesheet' type='text/css'>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="ext/lightbox/js/lightbox-2.6.min.js"></script>
+
+<link rel="icon" type="image/png" href="img/favico.png" />
+<title>Monika's portfolio</title>
+<script type="text/javascript">
+	var bindHover = function(srcElem, targetElem) {
+		/* bindHover function binds srcElem to targetElem and the other
+		   way around. Adds class 'hovered' to on of the elems if mouse
+		   pointer is moved over the other one. */
+		$(srcElem).hover(
+			function(){$(targetElem).addClass("hovered");},
+			function(){$(targetElem).removeClass("hovered");}
+		);
+		$(targetElem).hover(
+			function(){$(srcElem).addClass("hovered");},
+			function(){$(srcElem).removeClass("hovered");}
+		);
+	};
+	var scrollToElem = function(elem, targetElem) {
+		$(elem).click(function(){
+			menuScroll = true;
+			$('html, body').animate({
+	        	scrollTop: $(targetElem).offset().top-25
+	    	}, 1000);
+			$('#header').removeClass('nav-down').addClass('nav-up');
+			$("#subheader").addClass("subheader-up");
+			setTimeout(function() {
+				menuScroll = false;
+			}, 1100);
+		});
+	};
+
+	$(function() {
+		scrollToElem(".mdrawings", "#drawings-gallery");
+		scrollToElem(".mabout", "#about");
+		scrollToElem(".mwork", "#work");
+		scrollToElem(".mprojects", "#proj-gallery");
+		scrollToElem(".mvis", "#vis-gallery");
+		bindHover("#mvis", "#mvis-text");
+
+		$("#back-to-top").click(function() {
+			$('html, body').animate({
+				scrollTop: 0
+	    	}, 1000);
+		});
+
+		var speed = 8.0;
+		var background = document.getElementById("background");
+		window.onscroll = function() {
+			background.style.backgroundPosition = "0px " + (-window.pageYOffset / speed) + "px";
+		};
+	});
+
+	var lastScrollTop = 0;
+	var delta = 5;
+	var menuScroll = false;
+
+	// on scroll, let the interval function know the user has scrolled
+    $(window).scroll(function(event){
+		hasScrolled();
+    });
+    $(function() {
+		navbarHeight = $('#header').outerHeight();
+    });
+	function hasScrolled() {
+		var st = $(this).scrollTop();
+		if (st < navbarHeight) {
+			$("#subheader").addClass("subheader-up");
+			return;
+		}
+		
+		if(Math.abs(lastScrollTop - st) <= delta)
+			return;
+		
+		if (st > lastScrollTop && st > navbarHeight){
+			// Scroll Down
+			$('#header').removeClass('nav-down').addClass('nav-up');
+			$("#subheader").addClass("subheader-up");
+		} else {
+			// Scroll Up
+			if (!menuScroll) {
+				$('#header').removeClass('nav-up').addClass('nav-down');
+				$("#subheader").removeClass("subheader-up");
+			}
+		}
+		lastScrollTop = st;
+	}
+</script>
+</head>
+
+<body>
+	<div id="background"></div>
+	<div id="header" class="header outer-shadow">
+		<img id="pattern1" width="575" height="110" src="img/pattern1.png" alt="Header pattern 1"/>
+		<img id="pattern2" width="345" height="110" src="img/pattern2.png" alt="Header pattern 2"/>
+		<img id="logo" width="420" height="80" src="img/logo.png" alt="logo"/>
+	</div>
+	<div id="subheader" class="subheader-up outer-shadow">
+		<ul>
+			<li class="mabout">About</li>
+			<li class="mdrawings">Drawings</li>
+			<li class="mvis">Visualizations</li>
+			<li class="mwork">Work</li>
+			<li class="mprojects">Projects</li>
+		</ul>
+	</div>
+
+	<div class="content">
+		<div class="mosaic outer-shadow">
+			<div class="mosaic-elem mdrawings" id="mdrawings">
+				<span>Drawings</span>
+				<img src="img/small-img/ds_4_0.jpg" width="240" height="240" alt="Drawings" />
+			</div>
+			<div class="mosaic-elem mvis" id="mvis">
+				<img src="img/small-img/vs_1_0.jpg" width="480" height="480" alt="visualizations" />
+			</div>
+			<div class="mosaic-elem mwork" id="mwork">
+				<img src="img/small-img/ws_1_1.jpg" width="240" height="240" alt="Work" />
+				<span>Work</span>
+			</div>
+			<div class="mosaic-elem mabout" id="mabout">
+				About
+			</div>
+			<div class="mosaic-elem mprojects" id="mprojects">
+				<img src="img/small-img/ps_1_1.jpg" width="240" height="240" alt="Projects" />
+				<span>Projects</span>
+			</div>
+			<div class="mosaic-elem mvis" id="mvis-text">Visualizations</div>
+		</div>
+	</div>
+
+	<div class="full-width">
+		<div id="about" class="outer-shadow text">
+			<div class="content">
+				<span class="text-title">About</span>
+				<p>My name is Monika Mrozek. This is a short overview of my work.
+				<br/><br/>I'm an architect. After my study I worked mainly for companies which occupation is facades design. That was pretty interesting and I gained a lot of technical knowledge at that time. But for now I think, I would be more satisfied and useful doing something more creative, so I can train my other design skills.
+				<br/><br/>Recently I moved back from Oslo to Wrocław. You can find some of my norwegian stories on my blog. In my spare time I cook, draw or try to convince some people to let me cut their hair.</p>
+				<img src="img/signature.png" alt="Signature" />
+
+			</div>
+			<div id="about-buttons">
+				<a href="http://mdfraoslo.blogspot.no/" id="blog" class="circle_button outer-shadow">blog</a>
+				<a href="mailto:mrozekmj@gmail.com" id="email" class="circle_button outer-shadow"><span>mrozekmj @ gmail.com</span></a>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="content">
+<!-- MOSAIC DRAWINGS -->
+		<div id="drawings-gallery" class="outer-shadow gallery">
+			<a href="img/big-img/db_4_2.jpg" data-lightbox="draw-1" title="Portrait">
+				<img class="gallery-elem" src="img/small-img/ds_4_2.jpg" width="190" height="190" alt="Portrait" />
+			</a>
+			<a href="img/big-img/db_1_2.jpg" data-lightbox="draw-1" title="Owl">
+				<img class="gallery-elem" src="img/small-img/ds_1_2.jpg" width="190" height="190" alt="Owl" />
+			</a>
+			<a href="img/big-img/db_2_1.jpg" data-lightbox="draw-1" title="Study from nature - man">
+				<img class="gallery-elem" src="img/small-img/ds_2_1.jpg" width="190" height="190" alt="Study from nature - man" />
+			</a>
+			<a href="img/big-img/db_2_2.jpg" data-lightbox="draw-1" title="Study from nature - architecture">
+				<img class="gallery-elem" src="img/small-img/ds_2_2.jpg" width="190" height="190" alt="Study from nature - architecture" />
+			</a>
+			<a href="img/big-img/db_3_2.jpg" data-lightbox="draw-1" title="Website">
+				<img class="gallery-elem" src="img/small-img/ds_3_2.jpg" width="190" height="190" alt="Website" />
+			</a>
+			<a href="img/big-img/db_3_1.jpg" data-lightbox="draw-1" title="Flyer">
+				<img class="gallery-elem" src="img/small-img/ds_3_1.jpg" width="190" height="190" alt="Flyer" />
+			</a>
+			
+			<span class="gallery-elem">Drawings</span>
+			
+			<a href="img/big-img/db_2_3.jpg" data-lightbox="draw-1" title="Study from nature - man">
+				<img class="gallery-elem" src="img/small-img/ds_2_3.jpg" width="190" height="190" alt="Study from nature - man" />
+			</a>
+			<div class="gallery-elem gallery-elem-big">
+				<a href="img/big-img/db_3_3.jpg" data-lightbox="draw-1" title="Logo">
+					<img class="gallery-elem" src="img/small-img/ds_3_3.jpg" width="190" height="190" alt="Logo" />
+				</a>
+				<a href="img/big-img/db_1_1.jpg" data-lightbox="draw-1" title="Sketch - cartoons">
+					<img class="gallery-elem" src="img/small-img/ds_1_1.jpg" width="190" height="190" alt="Sketch - cartoons" />
+				</a>
+				<a href="img/big-img/db_2_4.jpg" data-lightbox="draw-1" title="Study from nature">
+					<img class="gallery-elem" src="img/small-img/ds_2_4.jpg" width="190" height="190" alt="Study from nature" />
+				</a>
+				<a href="img/big-img/db_4_3.jpg" data-lightbox="draw-1" title="Border collie">
+					<img class="gallery-elem" src="img/small-img/ds_4_3.jpg" width="190" height="190" alt="Border collie" />
+				</a>
+				
+			</div>
+		
+			<a href="img/big-img/db_4_1.jpg" data-lightbox="draw-1" title="Macaque">
+				<img class="gallery-elem gallery-elem-big" src="img/small-img/ds_4_1.jpg" width="390" height="390" alt="Macaque" />
+			</a>
+		</div>
+
+		<!-- MOSAIC VISUALISATIONS -->
+		<div id="vis-gallery" class='gallery outer-shadow'>
+			<div class="gallery-elem gallery-elem-big">
+				<a href="img/big-img/vb_1_1.jpg" data-lightbox="draw-2" title="Bathroom">
+					<img class="gallery-elem" src="img/small-img/vs_1_1.jpg" width="190" height="190" alt="Bathroom" />
+				</a>
+				<a href="img/big-img/vb_1_2.jpg" data-lightbox="draw-2" title="Bathroom">
+					<img class="gallery-elem" src="img/small-img/vs_1_2.jpg" width="190" height="190" alt="Bathroom" />
+				</a>
+				<a href="img/big-img/vb_3_1.jpg" data-lightbox="draw-2" title="Brewery visualisation">
+					<img class="gallery-elem gallery-elem-big" src="img/small-img/vs_3_1.390.jpg" width="390" height="390" alt="Brewery visualization" />
+				</a>
+			</div>
+			
+			<a href="img/big-img/vb_4_1.jpg" data-lightbox="draw-2" title="Housing visualization">
+				<img class="gallery-elem gallery-elem-big" src="img/small-img/vs_4_1.jpg" width="390" height="390" alt="Housing vizualisation" />
+			</a>
+
+			<span class="gallery-elem">Visualizations</span>
+
+			<a href="img/big-img/vb_2_1.jpg" data-lightbox="draw-2" title="Office building">
+				<img class="gallery-elem" src="img/small-img/vs_2_1.jpg" width="190" height="190" alt="Office building" />
+			</a>	
+		</div>
+	</div>
+		<!-- MOSAIC WORK -->
+	<div class="full-width">
+		<div id="work" class="outer-shadow text">
+			<div class="content">
+				<span class="text-title">Work</span>
+				<p>All those drawings are parts of executive designs of public utility buildings. Some of them are drawn by me from the start and I was effectively participating in design process, which was pretty cool experience. But apart from that, I use to work as a simple draftsman, who drew plenty of lines and asked superiors about purpose of almost every screw. Fortunately they were incredibly patient, so anyway I learned a lot about facades design and a number of new German words.</p> 	
+			</div>
+		</div>
+	</div>
+
+
+	<div class="content">
+		<div id="work-gallery" class='gallery outer-shadow'>
+
+			<!-- REGENT STR -->
+
+			<span class="gallery-elem twolines">Regent Street<br />W4</span>
+
+			<a href="img/big-img/wb_1_1.jpg" data-lightbox="draw-3" title="Executive design: facade detail, office building, Regent Street W4, London">
+				<img class="gallery-elem" src="img/small-img/ws_1_1.190.jpg" width="190" height="190" alt="Executive design: facade detail, office building, Regent Street W4, London" />
+			</a>
+
+			<a href="img/big-img/wb_1_2.jpg" data-lightbox="draw-3" title="Executive design: facade detail, office building, Regent Street W4, London">
+				<img class="gallery-elem" src="img/small-img/ws_1_2.jpg" width="190" height="190" alt="Executive design: facade detail, office building, Regent Street W4, London" />
+			</a>
+
+			<a href="img/big-img/wb_1_3.jpg" data-lightbox="draw-3" title="Executive design: facade detail, office building, Regent Street W4, London">
+				<img class="gallery-elem" src="img/small-img/ws_1_3.jpg" width="190" height="190" alt="Executive design: facade detail, office building, Regent Street W4, London" />
+			</a>
+
+			<!-- PLAC KONSTYTUCJI -->
+				
+			<a href="img/big-img/wb_2_1.jpg" data-lightbox="draw-3" title="Consulting: facade detail, Silver Tower Center, Wrocław">
+				<img class="gallery-elem" src="img/small-img/ws_2_1.jpg" width="190" height="190" alt="Consulting: facade detail, Silver Tower Center, Wrocław" />
+			</a>
+
+			<a href="img/big-img/wb_2_2.jpg" data-lightbox="draw-3" title="Consulting: facade detail, Silver Tower Center, Wrocław">
+				<img class="gallery-elem" src="img/small-img/ws_2_2.jpg" width="190" height="190" alt="Consulting: facade detail, Silver Tower Center, Wrocław" />
+			</a>
+
+			<span class="gallery-elem twolines">Silver Tower<br />Center</span>
+
+			<a href="img/big-img/wb_2_3.jpg" data-lightbox="draw-3" title="Consulting: facade detail, Silver Tower Center, Wrocław">
+				<img class="gallery-elem" src="img/small-img/ws_2_3.jpg" width="190" height="190" alt="Consulting: facade detail, Silver Tower Center, Wrocław" />
+			</a> 
+
+			<!-- FORUM MUZYKI -->
+
+			<a href="img/big-img/wb_3_1.jpg" data-lightbox="draw-3" title="Executive design: fin glazing detail, NFM- National Forum Of Music, Wrocław">
+				<img class="gallery-elem" src="img/small-img/ws_3_1.jpg" width="190" height="190" alt="Executive design: fin glazing detail, NFM- National Forum Of Music, Wrocław" />
+			</a>
+
+			<a href="img/big-img/wb_3_2.jpg" data-lightbox="draw-3" title="Executive design: fin glazing detail, NFM- National Forum Of Music, Wrocław">
+				<img class="gallery-elem" src="img/small-img/ws_3_2.jpg" width="190" height="190" alt="Executive design: fin glazing detail, NFM- National Forum Of Music, Wrocław" />
+			</a>
+
+			<a href="img/big-img/wb_3_3.jpg" data-lightbox="draw-3" title="Executive design: facade detail, NFM- National Forum Of Music, Wrocław">
+				<img class="gallery-elem" src="img/small-img/ws_3_3.jpg" width="190" height="190" alt="Executive design: facade detail, NFM- National Forum Of Music, Wrocław" />
+			</a>
+
+			<span class="gallery-elem">NFM</span>
+
+
+			<!-- LAATZEN -->
+
+			<a href="img/big-img/wb_4_1.jpg" data-lightbox="draw-3" title="Executive design: facade detail, public utility building, Laatzen">
+				<img class="gallery-elem" src="img/small-img/ws_4_1.jpg" width="190" height="190" alt="Executive design: facade detail, public utility building, Laatzen" />
+			</a>
+			<span class="gallery-elem">Laatzen</span>
+			<a href="img/big-img/wb_4_2.jpg" data-lightbox="draw-3" title="Executive design: facade detail, public utility building, Laatzen">
+				<img class="gallery-elem" src="img/small-img/ws_4_2.jpg" width="190" height="190" alt="Executive design: facade detail, public utility building, Laatzen" />
+			</a>
+
+			<a href="img/big-img/wb_4_3.jpg" data-lightbox="draw-3" title="Executive design: facade detail, public utility building, Laatzen">
+				<img class="gallery-elem" src="img/small-img/ws_4_3.jpg" width="190" height="190" alt="Executive design: facade detail, public utility building, Laatzen" />
+			</a>	
+		</div>
+
+		<!-- MOSAIC PROJECTS -->
+		<div id="proj-gallery" class="outer-shadow gallery">
+			<a href="img/big-img/pb_1_3.jpg" data-lightbox="draw-4" title="Aquapark and Spa Center">
+				<img class="gallery-elem gallery-elem-big" src="img/small-img/ps_1_3.390.jpg" width="390" height="390" alt="Aquapark and Spa Center, Oława" />
+			</a>
+			<a href="img/big-img/pb_1_2.jpg" data-lightbox="draw-4" title="Aquapark and Spa Center">
+				<img class="gallery-elem" src="img/small-img/ps_1_2.jpg" width="190" height="190" alt="Aquapark and Spa Center" />
+			</a>
+			<a href="img/big-img/pb_1_1.jpg" data-lightbox="draw-4" title="Aquapark and Spa Center">
+				<img class="gallery-elem" src="img/small-img/ps_1_1.jpg" width="190" height="190" alt="Aquapark and Spa Center" />
+			</a>
+			
+			<span class="gallery-elem">Projects</span>
+			
+			<a href="img/big-img/pb_4_1.jpg" data-lightbox="draw-4" title="Indystry architecture design">
+				<img class="gallery-elem" src="img/small-img/ps_4_1.jpg" width="190" height="190" alt="Indystry architecture design" />
+			</a>
+			<a href="img/big-img/pb_3_1.jpg" data-lightbox="draw-4" title="Library, Wrocław">
+				<img class="gallery-elem" src="img/small-img/ps_3_1.jpg" width="190" height="190" alt="Library, Wrocław" />
+			</a>
+			<a href="img/big-img/pb_3_2.jpg" data-lightbox="draw-4" title="Library, Wrocław">
+				<img class="gallery-elem" src="img/small-img/ps_3_2.jpg" width="190" height="190" alt="Library, Wrocław" />
+			</a>
+			<a href="img/big-img/pb_3_3.jpg" data-lightbox="draw-4" title="Library, Wrocław">
+				<img class="gallery-elem" src="img/small-img/ps_3_3.jpg" width="190" height="190" alt="Library, Wrocław" />
+			</a>
+			<a href="img/big-img/pb_2_1.jpg" data-lightbox="draw-4" title="Urban planning, Wrocław">
+				<img class="gallery-elem" src="img/small-img/ps_2_1.jpg" width="190" height="190" alt="Urban planning, Wrocław" />
+			</a>	
+		</div>
+	</div>
+
+	<div id="footer" class="outer-shadow">
+		<div id="footer-container">
+			<a href="#" class="footer-elem" title="Back to top"><img alt="Footer logo" id="back-to-top" src="img/logo-footer.png" width="190" height="25" /></a>
+			<a href="mailto:mrozekmj@gmail.com" class="footer-elem">mrozekmj@gmail.com</a>
+			<span class="footer-elem">2014</span>
+		</div>
+	</div>
+</body>
+</html>

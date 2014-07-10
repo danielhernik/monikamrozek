@@ -1,0 +1,118 @@
+
+/* MOSAICS */
+.mosaic {
+	/*background-color: white;*/
+	border: 5px solid white;
+	width: 800px;
+	position: relative;
+	height: 600px;
+
+}
+
+.mosaic-elem {
+	position: absolute;
+	/*font-family: 'Rosario', sans-serif;*/
+	font-family: 'Amatic SC', cursive;
+	font-size: 32px;
+	/*font-style: italic;*/
+	line-height: 200px;
+	text-align: center;
+	opacity: 0.75;
+	transition: opacity 0.5s ease;
+	-moz-transition: opacity 0.5s ease;
+	-webkit-transition: opacity 0.5s ease;
+	color: white;
+	/*text-shadow: 1px 1px 1px 373a43;*/
+}
+
+.mosaic-elem:hover,
+.mosaic .hovered {
+	cursor: pointer;
+	opacity: 1;
+}
+
+.mosaic-elem span {
+	width: 200px;	
+}
+
+/* DRAWINGS */
+#mdrawings {
+	width: 400px;
+	height: 200px;
+}
+#mdrawings span {
+	background-color: #10beff;
+	float: left;
+}
+#mdrawings img {
+	width: 200px;
+	height: 200px;
+}
+
+/* VISUALIZATIONS */
+#mvis {
+	height: 400px;
+	width: 400px;
+	left: 400px;
+	top: 0px;
+}
+
+#mvis img {
+	height: 400px;
+	width: 400px;
+}
+
+#mvis-text {
+	left: 600px;
+	top: 400px;
+	height: 200px;
+	width: 200px;
+	background-color: #7a9ec9;
+	
+}
+
+/*   WORK   */
+#mwork {
+	top: 200px;
+	left: 0px;
+	width: 200px;
+	height: 400px;
+}
+#mwork img {
+	width: 200px;
+	height: 200px;
+}
+#mwork span {
+	background-color: #4fc6d4;
+	display: block;
+	top: 200px;
+	position: absolute;
+}
+
+/* ABOUT */
+#mabout {
+	top: 200px;
+	left: 200px;
+	background-color: #f6637f;
+	width: 200px;
+	height: 200px;
+}
+
+/* project */
+#mprojects {
+	top: 400px;
+	left: 200px;
+	height: 200px;
+	width: 400px;
+}
+#mprojects * {
+	float: left;
+}
+#mprojects img {
+	width: 200px;
+	height: 200px;
+}
+#mprojects span {
+	display: inline-block;
+	background-color: #414658;
+}
