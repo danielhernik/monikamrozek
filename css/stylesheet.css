@@ -1,4 +1,4 @@
-h* {
+* {
 	margin: 0;
 	padding: 0;
 }
@@ -86,6 +86,7 @@ body {
 #pattern1 {
 /*	left: 0;
 	position: absolute;*/
+	max-width: 50%;
 	float:left;
 }
 
@@ -93,6 +94,7 @@ body {
 /*	right: 0;
 	position: absolute;*/
 	float:right;
+	max-width: 50%;
 }
 
 #logo {
@@ -104,9 +106,15 @@ body {
 }
 		
 .content {
-		width: 810px;
-		margin: 0 auto;
-		position: relative;
+	width: 810px;
+	max-width: 90%;
+	margin: 0 auto;
+	position: relative;
+}
+.content:after{
+	clear: both;
+	content: "";
+	display: block;
 }
 
 .full-width {
@@ -124,14 +132,18 @@ body {
 
  }
 
+ .text p {
+	 margin-bottom: 10px;
+ }
+
 .text-title {
 	font-family: 'Amatic SC', cursive;
 	font-size: 32px;
 	line-height: 190px;
-	width: 205px;
+	width: 20%;;
 	text-align: center;
 	color: white;
-	display: inline-block;
+	float: left;
 }
 
 .text p {
@@ -139,21 +151,20 @@ body {
 	font-family: 'Rosario', sans-serif;
 	font-style: italic;
 	font-size: 14px;	
-	width: 600px;
+	width: 80%;;
 	float: right;
 	margin-top: 20px;
 }
 
  #about {
 	border-bottom: 90px solid white;
-	height: 210px;
+	padding-bottom: 10px;
 
  }
  #about img {
  	height: 35px;
-	position: absolute;
-	right: 0px;
-	bottom: -10px;
+	float: right;
+	margin-top: 10px;
 }
 
  #about #about-buttons {
@@ -258,4 +269,12 @@ body {
 	width: 190px;
 }
 
+
+
+
+@media all and (max-width: 800px) {
+	#pattern2 {
+		display: none;
+	}
+}
 
